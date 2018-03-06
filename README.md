@@ -26,7 +26,8 @@ const Validate = require('request-validate')
     'category': 'array'
   }
 
-  let message = {
+  // 选填，自定义异常信息
+  let message = {
     'uid.required': 'uid 是必须的',
     'uid.numeric': 'uid 必须是数字',
     'filter.in': 'filter 必须在(1,2,3)范围内',
