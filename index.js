@@ -1,5 +1,5 @@
 module.exports = function (input, rules, message = {}) {
-    this.messageKey
+    let msgKey
 
     for (let field in rules) {
 
@@ -9,8 +9,8 @@ module.exports = function (input, rules, message = {}) {
 
             if (rule === 'required') {
                 if (!!input[field] === false) {
-                    this.message = !!message[msgKey] === true ? message[msgKey] : field + ' 不能为空'
-                    throw new Error(500)
+                    let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能为空'
+                    throw new Error(msg)
                 }
                 return true
             }
@@ -28,12 +28,12 @@ module.exports = function (input, rules, message = {}) {
                         // 数组
                         if (ruleData instanceof Array === true) {
                             if (ruleData.indexOf(input[field]) === -1) {
-                                this.message = !!message[msgKey] === true ? message[msgKey] : field + ' 非法'
-                                throw new Error(500)
+                                let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 非法'
+                                throw new Error(msg)
                             }
                         } else {
-                            this.message = '规则设置错误'
-                            throw new Error(500)
+                            let msg = '规则设置错误'
+                            throw new Error(msg)
                         }
                         break
                     case 'min':
@@ -41,14 +41,14 @@ module.exports = function (input, rules, message = {}) {
                         if (isNaN(input[field]) === true) {
                             // 字符串
                             if (input[field].length < min) {
-                                this.message = !!message[msgKey] === true ? message[msgKey] : field + ' 不能少于' + min + '个字符'
-                                throw new Error(500)
+                                let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能小于' + min + '个字符'
+                                throw new Error(msg)
                             }
                         } else {
                             // 数字
                             if (input[field] < min) {
-                                this.message = !!message[msgKey] === true ? message[msgKey] : field + ' 不能少于' + min
-                                throw new Error(500)
+                                let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能小于' + min
+                                throw new Error(msg)
                             }
                         }
                         break
@@ -57,21 +57,21 @@ module.exports = function (input, rules, message = {}) {
                         if (isNaN(input[field]) === true) {
                             // 字符串
                             if (input[field].length > max) {
-                                this.message = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + min + '个字符'
-                                throw new Error(500)
+                                let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + min + '个字符'
+                                throw new Error(msg)
                             }
                         } else {
                             // 数字
                             if (input[field] < max) {
-                                this.message = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + min
-                                throw new Error(500)
+                                let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + min
+                                throw new Error(msg)
                             }
                         }
                         break
                     default:
                         console.log('error “：” rule: ' + rule)
-                        this.message = '参数验证详细规则错误'
-                        throw new Error(500)
+                        let msg = '参数验证详细规则错误'
+                        throw new Error(msg)
                         break
                 }
                 return true
@@ -81,20 +81,20 @@ module.exports = function (input, rules, message = {}) {
             switch (rule) {
                 case 'numeric':
                     if (isNaN(input[field]) === true) {
-                        this.message = !!message[msgKey] === true ? message[msgKey] : field + ' 必须为数字'
-                        throw new Error(500)
+                        let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 必须为数字'
+                        throw new Error(msg)
                     }
                     break
                 case 'array':
                     if (Object.prototype.toString.call(input[field]) !== '[object Array]') {
-                        this.message = !!message[msgKey] === true ? message[msgKey] : field + ' 必须为数组'
-                        throw new Error(500)
+                        let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 必须为数组'
+                        throw new Error(msg)
                     }
                     break
                 default:
                     console.log('error rule: ' + rule)
-                    this.message = '参数验证规则错误'
-                    throw new Error(500)
+                    let msg = '参数验证规则错误'
+                    throw new Error(msg)
                     break
             }
             return true
