@@ -62,7 +62,7 @@ module.exports = function (input, rules, message = {}) {
                             }
                         } else {
                             // 数字
-                            if (input[field] < max) {
+                            if (input[field] > max) {
                                 let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + max
                                 throw new Error(msg)
                             }
