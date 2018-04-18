@@ -57,13 +57,13 @@ module.exports = function (input, rules, message = {}) {
                         if (isNaN(input[field]) === true) {
                             // 字符串
                             if (input[field].length > max) {
-                                let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + min + '个字符'
+                                let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + max + '个字符'
                                 throw new Error(msg)
                             }
                         } else {
                             // 数字
                             if (input[field] < max) {
-                                let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + min
+                                let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + max
                                 throw new Error(msg)
                             }
                         }
