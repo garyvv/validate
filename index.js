@@ -27,6 +27,7 @@ module.exports = function (input, rules, message = {}) {
                         let ruleData = checkRule[1].split(',')
                         // 数组
                         if (ruleData instanceof Array === true) {
+                            field = field.toString()
                             if (ruleData.indexOf(input[field]) === -1) {
                                 let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 非法'
                                 throw new Error(msg)
