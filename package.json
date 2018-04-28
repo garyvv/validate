@@ -1,6 +1,6 @@
 {
   "name": "request-validate",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "validate request by rule",
   "main": "index.js",
   "scripts": {
